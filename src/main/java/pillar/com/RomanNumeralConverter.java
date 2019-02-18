@@ -4,11 +4,17 @@ public class RomanNumeralConverter {
 
     public String convert(Integer i) {
         String output = new String();
-        if (i == 5){
-            return "V";
+        int fives = i / 5;
+        int notFive = i % 5;
+        for (int j = 0; j < fives; j++) {
+            output += "V";
         }
-        for (int j = 0; j < i; j++) {
-            output += "I";
+        if (notFive == 4) {
+            output = "IV";
+        } else {
+            for (int j = 0; j < notFive; j++) {
+                output += "I";
+            }
         }
         return output;
     }
