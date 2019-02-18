@@ -1,6 +1,7 @@
 package pillar.com;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class RomanNumeralConverterTest {
@@ -35,5 +36,16 @@ public class RomanNumeralConverterTest {
     @Test
     public void shouldConvert9toIX() {
         assertEquals("IX", converter.convert(9));
+    }
+
+    @Test
+    public void shouldConvertMajorUnitsToSingleRomanNumeral() {
+        assertEquals("I", converter.convert(1));
+        assertEquals("V", converter.convert(5));
+        assertEquals("X", converter.convert(10));
+        assertEquals("L", converter.convert(50));
+        assertEquals("C", converter.convert(100));
+        assertEquals("D", converter.convert(500));
+        assertEquals("M", converter.convert(1000));
     }
 }
