@@ -26,4 +26,9 @@ public class RomanNumeralConverterTest {
     public void shouldConvert4toIV() {
         assertEquals("IV", converter.convert(4));
     }
+
+    @Test
+    public void shouldCovnert10toX() {
+        assertEquals("X", converter.convert(10));
+    }
 }
