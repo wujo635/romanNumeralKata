@@ -1,16 +1,6 @@
 package pillar.com;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RomanNumeralConverter {
-
-    private static final Map<Integer, String> majorUnitsMap = new HashMap<Integer, String>();
-    static {
-        majorUnitsMap.put(1,"I");
-        majorUnitsMap.put(5,"V");
-        majorUnitsMap.put(10,"X");
-    }
 
     public String convert(Integer i) {
         String output = new String();
