@@ -28,7 +28,12 @@ public class RomanNumeralConverterTest {
     }
 
     @Test
-    public void shouldCovnert10toX() {
+    public void shouldConvert10toX() {
         assertEquals("X", converter.convert(10));
+    }
+
+    @Test
+    public void shouldConvert9toIX() {
+        assertEquals("IX", converter.convert(9));
     }
 }
