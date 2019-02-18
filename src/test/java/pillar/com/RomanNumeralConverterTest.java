@@ -5,8 +5,10 @@ import static org.junit.Assert.*;
 
 public class RomanNumeralConverterTest {
 
+    private RomanNumeralConverter converter = new RomanNumeralConverter();
+
     @Test
-    public void sanityTest() {
-        assertEquals(0,1);
+    public void shouldConvert1toI() {
+        assertEquals("I", converter.convert(1));
     }
 }
