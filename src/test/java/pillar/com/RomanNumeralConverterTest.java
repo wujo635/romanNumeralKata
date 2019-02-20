@@ -48,4 +48,9 @@ public class RomanNumeralConverterTest {
         assertEquals("D", converter.convert(500));
         assertEquals("M", converter.convert(1000));
     }
+
+    @Test
+    public void shouldReturnNullaWhenConvertingZero() {
+        assertEquals("Nulla", converter.convert(0));
+    }
 }
