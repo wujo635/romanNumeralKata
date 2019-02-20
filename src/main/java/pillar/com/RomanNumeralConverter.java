@@ -17,6 +17,9 @@ public class RomanNumeralConverter {
     }
 
     public String convert(Integer i) {
+        if (i == 0) {
+            return "Nulla";
+        }
         if (majorUnitsMap.containsKey(i)) {
             return majorUnitsMap.get(i);
         }
