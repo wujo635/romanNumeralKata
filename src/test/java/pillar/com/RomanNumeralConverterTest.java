@@ -53,4 +53,9 @@ public class RomanNumeralConverterTest {
     public void shouldReturnNullaWhenConvertingZero() {
         assertEquals("Nulla", converter.convert(0));
     }
+
+    @Test
+    public void shouldDisallowNegativeInput() {
+        assertEquals("Failed to convert input.", converter.convert(-1));
+    }
 }
