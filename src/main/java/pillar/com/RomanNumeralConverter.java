@@ -19,6 +19,8 @@ public class RomanNumeralConverter {
     public String convert(Integer i) {
         if (i == 0) {
             return "Nulla";
+        } else if (i < 0) {
+            return "Failed to convert input.";
         }
         if (majorUnitsMap.containsKey(i)) {
             return majorUnitsMap.get(i);
