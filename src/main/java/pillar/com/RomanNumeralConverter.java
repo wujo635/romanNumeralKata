@@ -19,7 +19,7 @@ public class RomanNumeralConverter {
     public String convert(Integer i) {
         if (i == 0) {
             return "Nulla";
-        } else if (i < 0) {
+        } else if (i < 0 || i > 3000) {
             return "Failed to convert input.";
         }
         if (majorUnitsMap.containsKey(i)) {
