@@ -20,31 +20,12 @@ public class RomanNumeralConverter {
         if (majorUnitsMap.containsKey(i)) {
             return majorUnitsMap.get(i);
         }
-        String output = new String();
-        int countdown = i;
-        while (countdown >= 9) {
-            if (countdown == 9) {
-                output += "IX";
-                countdown -= 9;
-            } else {
-                output += "X";
-                countdown -= 10;
+        for (int key: majorUnitsMap.keySet()) {
+            if (key == i + 1) {
+                return "I" + majorUnitsMap.get(key);
             }
         }
-        while (countdown >= 4) {
-            if (countdown == 4) {
-                output += "IV";
-                countdown -= 4;
-            } else {
-                output += "V";
-                countdown -= 5;
-            }
-        }
-        while (countdown > 0) {
-            output += "I";
-            countdown--;
-        }
-        return output;
+        return new String(new char[i]).replace("\0","I");
     }
 
 }
