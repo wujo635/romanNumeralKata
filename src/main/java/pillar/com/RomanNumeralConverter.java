@@ -12,36 +12,36 @@ public class RomanNumeralConverter {
         if (isOutOfRange(i)) {
             return "Failed to convert input.";
         }
-        String baseString = buildBaseString(i);
-        baseString = applySubtraction(baseString);
-        baseString = condenseString(baseString);
-        return baseString;
+        String romanString = buildBaseString(i);
+        romanString = applySubtraction(romanString);
+        romanString = condenseString(romanString);
+        return romanString;
     }
 
-    private String condenseString(String baseString) {
+    private String condenseString(String romanString) {
         for (int j = 0; j < symbols.length; j++) {
             if (j % 2 == 1) {
                 String twoOfNumeral = new String(new char[2]).replace("\0", Character.toString(symbols[j]));
-                if (baseString.contains(twoOfNumeral) && j != symbols.length - 1) {
-                    int pos1 = baseString.indexOf(symbols[j]);
-                    baseString = baseString.substring(0, pos1) + symbols[j - 1] + baseString.substring(pos1);
-                    baseString = baseString.replace(twoOfNumeral, "");
+                if (romanString.contains(twoOfNumeral) && j != symbols.length - 1) {
+                    int pos1 = romanString.indexOf(symbols[j]);
+                    romanString = romanString.substring(0, pos1) + symbols[j - 1] + romanString.substring(pos1);
+                    romanString = romanString.replace(twoOfNumeral, "");
                 }
             }
         }
-        return baseString;
+        return romanString;
     }
 
-    private String applySubtraction(String baseString) {
+    private String applySubtraction(String romanString) {
         for (int j = 0; j < symbols.length; j++) {
             String fourOfNumeral = new String(new char[4]).replace("\0", Character.toString(symbols[j]));
-            if (baseString.contains(fourOfNumeral)) {
-                int pos1 = baseString.indexOf(symbols[j]);
-                baseString = symbols[j] + baseString.substring(0, pos1) + symbols[j - 1] + baseString.substring(pos1);
-                baseString = baseString.replace(fourOfNumeral, "");
+            if (romanString.contains(fourOfNumeral)) {
+                int pos1 = romanString.indexOf(symbols[j]);
+                romanString = symbols[j] + romanString.substring(0, pos1) + symbols[j - 1] + romanString.substring(pos1);
+                romanString = romanString.replace(fourOfNumeral, "");
             }
         }
-        return baseString;
+        return romanString;
     }
 
     private String buildBaseString(int i) {
