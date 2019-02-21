@@ -1,42 +1,62 @@
 package pillar.com;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class RomanNumeralConverter {
 
-    private static final Map<Integer, String> majorUnitsMap = new HashMap<Integer, String>();
-    static {
-        majorUnitsMap.put(1,"I");
-        majorUnitsMap.put(5,"V");
-        majorUnitsMap.put(10,"X");
-        majorUnitsMap.put(50,"L");
-        majorUnitsMap.put(100,"C");
-        majorUnitsMap.put(500,"D");
-        majorUnitsMap.put(1000,"M");
-    }
+    private static final char[] symbols = new char[]{'M', 'D', 'C', 'L', 'X', 'V', 'I'};
+    private static final int[] values = new int[]{1000, 500, 100, 50, 10, 5, 1};
 
     public String convert(Integer i) {
-        String x = isUnconvertable(i);
-        if (x != null) return x;
-        if (majorUnitsMap.containsKey(i)) {
-            return majorUnitsMap.get(i);
-        }
-        for (int key: majorUnitsMap.keySet()) {
-            if (key == i + 1) {
-                return "I" + majorUnitsMap.get(key);
-            }
-        }
-        return new String(new char[i]).replace("\0","I");
-    }
-
-    private String isUnconvertable(Integer i) {
         if (i == 0) {
             return "Nulla";
-        } else if (i < 0 || i > 3000) {
+        }
+        if (isOutOfRange(i)) {
             return "Failed to convert input.";
         }
-        return null;
+        String baseString = buildBaseString(i);
+        baseString = applySubtraction(baseString);
+        baseString = condenseString(baseString);
+        return baseString;
+    }
+
+    private String condenseString(String baseString) {
+        for (int j = 0; j < symbols.length; j++) {
+            String twoOfNumeral = new String(new char[2]).replace("\0", Character.toString(symbols[j]));
+            if (baseString.contains(twoOfNumeral) && j != symbols.length - 1) {
+                int pos1 = baseString.indexOf(symbols[j]);
+                baseString = baseString.substring(0, pos1) + symbols[j - 1] + baseString.substring(pos1);
+                baseString = baseString.replace(twoOfNumeral, "");
+            }
+        }
+        return baseString;
+    }
+
+    private String applySubtraction(String baseString) {
+        for (int j = 0; j < symbols.length; j++) {
+            String fourOfNumeral = new String(new char[4]).replace("\0", Character.toString(symbols[j]));
+            if (baseString.contains(fourOfNumeral)) {
+                int pos1 = baseString.indexOf(symbols[j]);
+                baseString = symbols[j] + baseString.substring(0, pos1) + symbols[j - 1] + baseString.substring(pos1);
+                baseString = baseString.replace(fourOfNumeral, "");
+            }
+        }
+        return baseString;
+    }
+
+    private String buildBaseString(int i) {
+        String output = new String();
+        while (i != 0) {
+            for (int j = 0; j < values.length; j++) {
+                if (i >= values[j]) {
+                    output += symbols[j];
+                    i -= values[j];
+                }
+            }
+        }
+        return output;
+    }
+
+    private boolean isOutOfRange(Integer i) {
+        return (i < 0 || i > 3000);
     }
 
 }
