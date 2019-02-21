@@ -63,4 +63,9 @@ public class RomanNumeralConverterTest {
     public void shouldDisallowInputGreaterThan3000() {
         assertEquals("Failed to convert input.", converter.convert(3001));
     }
+
+    @Test
+    public void shouldConvertInputAsBigAs3000() {
+        assertEquals("MMM", converter.convert(3000));
+    }
 }

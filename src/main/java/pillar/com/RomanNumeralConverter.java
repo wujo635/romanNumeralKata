@@ -20,11 +20,13 @@ public class RomanNumeralConverter {
 
     private String condenseString(String baseString) {
         for (int j = 0; j < symbols.length; j++) {
-            String twoOfNumeral = new String(new char[2]).replace("\0", Character.toString(symbols[j]));
-            if (baseString.contains(twoOfNumeral) && j != symbols.length - 1) {
-                int pos1 = baseString.indexOf(symbols[j]);
-                baseString = baseString.substring(0, pos1) + symbols[j - 1] + baseString.substring(pos1);
-                baseString = baseString.replace(twoOfNumeral, "");
+            if (j % 2 == 1) {
+                String twoOfNumeral = new String(new char[2]).replace("\0", Character.toString(symbols[j]));
+                if (baseString.contains(twoOfNumeral) && j != symbols.length - 1) {
+                    int pos1 = baseString.indexOf(symbols[j]);
+                    baseString = baseString.substring(0, pos1) + symbols[j - 1] + baseString.substring(pos1);
+                    baseString = baseString.replace(twoOfNumeral, "");
+                }
             }
         }
         return baseString;
@@ -49,6 +51,7 @@ public class RomanNumeralConverter {
                 if (i >= values[j]) {
                     output += symbols[j];
                     i -= values[j];
+                    break;
                 }
             }
         }
