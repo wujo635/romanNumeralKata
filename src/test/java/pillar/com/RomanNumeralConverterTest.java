@@ -54,4 +54,9 @@ public class RomanNumeralConverterTest {
         assertEquals("MMM", converter.convert(3000));
     }
 
+    @Test
+    public void shouldConvertNumberUsingAllPossibleSymbols() {
+        assertEquals("MDCLXVI", converter.convert(1666));
+    }
+
 }
