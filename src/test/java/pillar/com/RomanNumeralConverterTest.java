@@ -9,32 +9,17 @@ public class RomanNumeralConverterTest {
     private RomanNumeralConverter converter = new RomanNumeralConverter();
 
     @Test
-    public void shouldConvert1toI() {
-        assertEquals("I", converter.convert(1));
-    }
-
-    @Test
-    public void shouldConvert2toII() {
+    public void shouldConvertNumbersEqualingTwoBaseSymbol() {
         assertEquals("II", converter.convert(2));
     }
 
     @Test
-    public void shouldConvert5toV() {
-        assertEquals("V", converter.convert(5));
-    }
-
-    @Test
-    public void shouldConvert4toIV() {
+    public void shouldConvertNumbersOneLessThanBaseSymbol() {
         assertEquals("IV", converter.convert(4));
     }
 
     @Test
-    public void shouldConvert10toX() {
-        assertEquals("X", converter.convert(10));
-    }
-
-    @Test
-    public void shouldConvert9toIX() {
+    public void shouldConvertNumbersOneLessThanSymbolStepMoreThanOneStepApart() {
         assertEquals("IX", converter.convert(9));
     }
 
@@ -68,4 +53,5 @@ public class RomanNumeralConverterTest {
     public void shouldConvertInputAsBigAs3000() {
         assertEquals("MMM", converter.convert(3000));
     }
+
 }
