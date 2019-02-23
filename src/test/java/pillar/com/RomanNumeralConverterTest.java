@@ -59,4 +59,9 @@ public class RomanNumeralConverterTest {
         assertEquals("MDCLXVI", converter.convert(1666));
     }
 
+    @Test
+    public void shouldConvertNumberWithMultipleSubtractions() {
+        assertEquals("CMXCIX", converter.convert(999));
+    }
+
 }
