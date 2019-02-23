@@ -19,7 +19,7 @@ public class RomanNumeralConverterTest {
     }
 
     @Test
-    public void shouldConvertNumbersOneLessThanSymbolStepMoreThanOneStepApart() {
+    public void shouldConvertNumbersOneLessThanSymbolMoreThanOneStepApart() {
         assertEquals("IX", converter.convert(9));
     }
 

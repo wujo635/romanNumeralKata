@@ -37,8 +37,19 @@ public class RomanNumeralConverter {
             String fourOfNumeral = new String(new char[4]).replace("\0", Character.toString(symbols[j]));
             if (romanString.contains(fourOfNumeral)) {
                 int pos1 = romanString.indexOf(symbols[j]);
-                romanString = symbols[j] + romanString.substring(0, pos1) + symbols[j - 1] + romanString.substring(pos1);
+                romanString = romanString.substring(0, pos1) + symbols[j] + symbols[j - 1] + romanString.substring(pos1);
                 romanString = romanString.replace(fourOfNumeral, "");
+            }
+        }
+        return rearrange(romanString);
+    }
+
+    private String rearrange(String romanString) {
+        for (int j = 0; j < romanString.length() - 2; j++) {
+            if (romanString.charAt(j) == romanString.charAt(j + 2)) {
+                char c = romanString.charAt(j);
+                char d = romanString.charAt(j+1);
+                romanString = romanString.substring(0,j) + d + c + romanString.substring(j+2);
             }
         }
         return romanString;
