@@ -2,8 +2,8 @@ package pillar.com;
 
 public class RomanNumeralConverter {
 
-    private static final char[] symbols = new char[]{'M', 'D', 'C', 'L', 'X', 'V', 'I'};
-    private static final int[] values = new int[]{1000, 500, 100, 50, 10, 5, 1};
+    private static final String[] symbols = new String[]{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    private static final int[] values = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
 
     public String convert(Integer i) {
         if (i == 0) {
@@ -12,48 +12,9 @@ public class RomanNumeralConverter {
         if (isOutOfRange(i)) {
             return "Failed to convert input.";
         }
-        String romanString = buildBaseString(i);
-        romanString = applySubtraction(romanString);
-        romanString = condenseString(romanString);
-        return romanString;
+        return buildBaseString(i);
     }
 
-    private String condenseString(String romanString) {
-        for (int j = 0; j < symbols.length; j++) {
-            if (j % 2 == 1) {
-                String twoOfNumeral = new String(new char[2]).replace("\0", Character.toString(symbols[j]));
-                if (romanString.contains(twoOfNumeral) && j != symbols.length - 1) {
-                    int pos1 = romanString.indexOf(symbols[j]);
-                    romanString = romanString.substring(0, pos1) + symbols[j - 1] + romanString.substring(pos1);
-                    romanString = romanString.replace(twoOfNumeral, "");
-                }
-            }
-        }
-        return romanString;
-    }
-
-    private String applySubtraction(String romanString) {
-        for (int j = 0; j < symbols.length; j++) {
-            String fourOfNumeral = new String(new char[4]).replace("\0", Character.toString(symbols[j]));
-            if (romanString.contains(fourOfNumeral)) {
-                int pos1 = romanString.indexOf(symbols[j]);
-                romanString = romanString.substring(0, pos1) + symbols[j] + symbols[j - 1] + romanString.substring(pos1);
-                romanString = romanString.replace(fourOfNumeral, "");
-            }
-        }
-        return rearrange(romanString);
-    }
-
-    private String rearrange(String romanString) {
-        for (int j = 0; j < romanString.length() - 2; j++) {
-            if (romanString.charAt(j) == romanString.charAt(j + 2)) {
-                char c = romanString.charAt(j);
-                char d = romanString.charAt(j+1);
-                romanString = romanString.substring(0,j) + d + c + romanString.substring(j+2);
-            }
-        }
-        return romanString;
-    }
 
     private String buildBaseString(int i) {
         String output = new String();
